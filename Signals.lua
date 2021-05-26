@@ -3,7 +3,7 @@ local Signals = {}
 local _signalsHolder = {}
 Signals.__index = Signals
 
-function Signals.new(Name: string)
+function Signals.new(Name)
 	local signalObject = setmetatable({
 		["Name"] = Name,
 		["_IsSignal"] = true,
@@ -14,7 +14,7 @@ function Signals.new(Name: string)
 	return signalObject
 end
 
-function Signals:GetSignal(Name: string)
+function Signals:GetSignal(Name)
 	for _, signal in ipairs(_signalsHolder) do
 		if signal.Name == Name then
 			return signal
