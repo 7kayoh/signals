@@ -39,7 +39,9 @@ function Signals:Emit(...)
 	for _, slot in ipairs(self._Slots) do
 		coroutine.wrap(function()
 			local ok, response = pcall(slot, table.unpack(arguments))
-			assert(ok, response, debug.traceback)
+			if not ok then
+				assert(response, debug.traceback())
+			end
 		end)()
 	end
 end
