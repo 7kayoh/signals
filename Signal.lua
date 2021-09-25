@@ -77,4 +77,12 @@ function Signal:Emit(...)
     end
 end
 
+function Signal:DisconnectAll()
+    if self then
+        for _, listener in next, self._listeners do
+            listener:Unregister()
+        end
+    end
+end
+
 return Signal
